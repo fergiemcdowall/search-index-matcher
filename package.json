@@ -1,0 +1,31 @@
+{
+  "name": "search-index-matcher",
+  "version": "0.0.1",
+  "description": "A matcher that generates its content from a search-index",
+  "main": "lib/matcher.js",
+  "scripts": {
+    "test": "tape"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fergiemcdowall/search-index-matcher.git"
+  },
+  "keywords": [
+    "search",
+    "index",
+    "matcher",
+    "autocomplete",
+    "autosuggest"
+  ],
+  "author": "Fergus McDowall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fergiemcdowall/search-index-matcher/issues"
+  },
+  "homepage": "https://github.com/fergiemcdowall/search-index-matcher#readme",
+  "dependencies": {
+    "highland": "^2.6.0",
+    "lodash": "^4.0.0",
+    "log-skeleton": "^1.1.0"
+  }
+}
