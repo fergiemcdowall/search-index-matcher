@@ -6,7 +6,7 @@ module.exports = function (options) {
   var log = skeleton((options) ? options.log : undefined);
   var matcher = {};
 
-  matcher.matcher = function (reverseIndex, ops, callback) {
+  matcher.matcher = function (ops, callback) {
 
     if (!_.isPlainObject(ops)) {
       try {
@@ -36,7 +36,7 @@ module.exports = function (options) {
 
     //    console.log(ops);
 
-    H(reverseIndex.createReadStream({
+    H(options.indexes.createReadStream({
       start: 'TF￮' + ops.field + '￮' + ops.beginsWith,
       end: 'TF￮' + ops.field + '￮' + ops.beginsWith + '￮￮￮'
     }))
