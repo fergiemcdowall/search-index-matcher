@@ -8,7 +8,7 @@ module.exports = function (givenOptions, callback) {
     var matcher = {};
     
     var log = skeleton((options) ? options.log : undefined);
-    matcher.matcher = function (ops, callback) {
+    matcher.match = function (ops, callback) {
 
       if (!_.isPlainObject(ops)) {
         try {
@@ -36,13 +36,28 @@ module.exports = function (givenOptions, callback) {
         return callback(new Error('match string must be longer than threshold (' +
                                   ops.threshold + ')'), []);
 
-      //    console.log(ops);
+
+      // console.log('TF￮' + ops.field + '￮' + ops.beginsWith)
+      // options.indexes.createReadStream({
+      //   start: 'TF￮body￮epub',
+      //   end: 'TF￮body￮epub￮￮￮'
+      // })
+      // .on('data', function(data) {
+      //   console.log(data)
+      // })
+
+      // console.log(ops)
 
       H(options.indexes.createReadStream({
         start: 'TF￮' + ops.field + '￮' + ops.beginsWith,
         end: 'TF￮' + ops.field + '￮' + ops.beginsWith + '￮￮￮'
       }))
         .on('error', function (err) {
+          console.log('DISASTER')
+          log.error('Oh my!', err);
+        })
+        .on('close', function (err) {
+          console.log('ended')
           log.error('Oh my!', err);
         })
         .filter(function (data) {
@@ -112,7 +127,8 @@ var getOptions = function(givenOptions, callbacky) {
   ], function(err, results){
     var options = _.defaults(givenOptions, results[0])
     if (results[1] != null) {
-      options = _.defaults(options, results[1])
+//      options = _.defaults(options, results[1])
+      options.indexes = results[1];
     }
     return callbacky(err, options)
   })
