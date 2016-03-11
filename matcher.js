@@ -92,7 +92,6 @@ var getOptions = function(givenOptions, callbacky) {
   const async = require('async')
   const bunyan = require('bunyan')
   const levelup = require('levelup')
-  const leveldown = require('leveldown')
   const tv = require('term-vector')
   givenOptions = givenOptions || {}
   async.parallel([
