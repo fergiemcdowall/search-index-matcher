@@ -1,6 +1,7 @@
-var skeleton = require('log-skeleton');
-var H = require('highland');
-var _ = require('lodash');
+const skeleton = require('log-skeleton');
+const H = require('highland');
+const _isPlainObject = require('lodash.isplainobject')
+const _defaults = require('lodash.defaults')
 
 module.exports = function (givenOptions, callback) {
 
@@ -10,7 +11,7 @@ module.exports = function (givenOptions, callback) {
     var log = skeleton((options) ? options.log : undefined);
     matcher.match = function (ops, callback) {
 
-      if (!_.isPlainObject(ops)) {
+      if (!_isPlainObject(ops)) {
         try {
           ops = JSON.parse(ops);
         }
@@ -27,7 +28,7 @@ module.exports = function (givenOptions, callback) {
         type: 'simple'
       };
 
-      ops = _.defaults(ops || {}, opsDefaults);
+      ops = _defaults(ops || {}, opsDefaults);
 
       if (ops.beginsWith.length === 0)
         return callback(new Error('match string can not be empty'), []);
@@ -88,7 +89,6 @@ module.exports = function (givenOptions, callback) {
 };
 
 var getOptions = function(givenOptions, callbacky) {
-  const _ = require('lodash')
   const async = require('async')
   const bunyan = require('bunyan')
   const levelup = require('levelup')
@@ -124,7 +124,7 @@ var getOptions = function(givenOptions, callbacky) {
       }
     }
   ], function(err, results){
-    var options = _.defaults(givenOptions, results[0])
+    var options = _defaults(givenOptions, results[0])
     if (results[1] != null) {
 //      options = _.defaults(options, results[1])
       options.indexes = results[1];

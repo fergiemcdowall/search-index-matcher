@@ -1,6 +1,6 @@
 {
   "name": "search-index-matcher",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A matcher that generates its content from a search-index",
   "main": "matcher.js",
   "scripts": {
@@ -26,12 +26,13 @@
   "dependencies": {
     "async": "^1.5.2",
     "bunyan": "^1.6.0",
-    "highland": "^2.6.0",
+    "highland": "^2.7.3",
     "leveldown": "^1.4.4",
     "levelup": "^1.3.1",
-    "lodash": "^4.5.0",
+    "lodash.defaults": "^4.0.1",
+    "lodash.isplainobject": "^4.0.4",
     "log-skeleton": "^1.1.0",
-    "term-vector": "0.0.12"
+    "term-vector": "0.0.18"
   },
   "devDependencies": {
     "mocha": "^2.4.5",
