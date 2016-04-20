@@ -37,21 +37,9 @@ module.exports = function (givenOptions, callback) {
         return callback(new Error('match string must be longer than threshold (' +
                                   ops.threshold + ')'), []);
 
-
-      // console.log('TF￮' + ops.field + '￮' + ops.beginsWith)
-      // options.indexes.createReadStream({
-      //   start: 'TF￮body￮epub',
-      //   end: 'TF￮body￮epub￮￮￮'
-      // })
-      // .on('data', function(data) {
-      //   console.log(data)
-      // })
-
-      // console.log(ops)
-
       H(options.indexes.createReadStream({
-        start: 'TF￮' + ops.field + '￮' + ops.beginsWith,
-        end: 'TF￮' + ops.field + '￮' + ops.beginsWith + '￮￮￮'
+        start: 'DF￮' + ops.field + '￮' + ops.beginsWith,
+        end: 'DF￮' + ops.field + '￮' + ops.beginsWith + '￮￮￮'
       }))
         .on('error', function (err) {
           console.log('DISASTER')
