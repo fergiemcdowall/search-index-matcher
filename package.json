@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/fergiemcdowall/search-index-matcher#readme",
   "dependencies": {
+    "async": "^2.0.1",
     "bunyan": "^1.8.1",
     "highland": "^2.7.4",
     "leveldown": "^1.4.6",
