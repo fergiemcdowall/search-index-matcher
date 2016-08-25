@@ -273,16 +273,5 @@ describe('Matching epub: ', function () {
     }).on('end', function () {
       done()
     })
-
-  // var str = 'ep'
-  // matcher.match({
-  //   beginsWith: str
-  // }, function (err, matches) {
-  //   should.exist(matches)
-  //   matches.length.should.be.exactly(0)
-  //   ;(err instanceof Error).should.be.exactly(true)
-  //   err.toString().should.be.exactly('Error: match string must be longer than threshold (3)')
-  //   done()
-  // })
   })
 })
