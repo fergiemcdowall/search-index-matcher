@@ -1,7 +1,11 @@
 const H = require('highland')
 const Readable = require('stream').Readable
 const _defaults = require('lodash.defaults')
+const async = require('async')
+const bunyan = require('bunyan')
+const levelup = require('levelup')
 const skeleton = require('log-skeleton')
+const sw = require('stopword')
 
 module.exports = function (givenOptions, callback) {
   getOptions(givenOptions, function (err, options) {
@@ -60,10 +64,6 @@ module.exports = function (givenOptions, callback) {
 }
 
 var getOptions = function (givenOptions, callbacky) {
-  const async = require('async')
-  const bunyan = require('bunyan')
-  const levelup = require('levelup')
-  const tv = require('term-vector')
   givenOptions = givenOptions || {}
   async.parallel([
     function (callback) {
@@ -75,7 +75,7 @@ var getOptions = function (givenOptions, callbacky) {
       defaultOps.logLevel = 'error'
       defaultOps.nGramLength = 1
       defaultOps.separator = /[\|' \.,\-|(\n)]+/
-      defaultOps.stopwords = tv.getStopwords('en').sort()
+      defaultOps.stopwords = sw.getStopwords('en').sort()
       defaultOps.log = bunyan.createLogger({
         name: 'search-index',
         level: givenOptions.logLevel || defaultOps.logLevel
@@ -96,7 +96,6 @@ var getOptions = function (givenOptions, callbacky) {
   ], function (err, results) {
     var options = _defaults(givenOptions, results[0])
     if (results[1] != null) {
-      //      options = _.defaults(options, results[1])
       options.indexes = results[1]
     }
     return callbacky(err, options)
